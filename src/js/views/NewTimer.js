@@ -8,6 +8,7 @@ const NewTimer = () => {
           <input class="timerinput" type="number" placeholder="60min">
             <button class="btn__timer--start">Start</button>
             <button class="btn__timer--stop">Stop</button>
+            <button class="btn__timer--clear">Reset</button>
             </div>
             <h5>Timer: <span class="counter__display--time">0</span></h5>
                 <div class="progress__bar">

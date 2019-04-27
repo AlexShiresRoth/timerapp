@@ -26,7 +26,6 @@
     min-height:50vh;
     display:flex;
     flex-direction:row;
-    align-items:center;
     justify-content:space-around;
     flex-wrap:wrap;
     border-radius: 5px;
@@ -92,5 +91,20 @@
         box-shadow:0 5px 5px #999;
       }
     }
-  }
+    &--clear{
+      border-radius: 5px;
+      background:#ff4500;
+      border: 2px solid #ff4500;
+      color: #fff;
+      transition: all .2s ease-in-out;
+      margin:0 5px;
+      padding:.5rem;
+      &:hover{
+        background : darken(#ff4500,10%);
+        border: 2px solid darken(#ff4500,10%);
+        cursor:pointer;
+        box-shadow:0 5px 5px #999;
+        }
+      }
+    }
 }

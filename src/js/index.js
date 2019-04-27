@@ -3,7 +3,6 @@
 //allow user to enter time to count down from{done}
 //convert user input into different time
 //play audio clip when time runs out
-//loop over everything to make work
 
 import Selectors from './models/ElementSelectors';
 
@@ -15,9 +14,12 @@ let int;
    
   int = setInterval(function(){
     
-    if(interval > 0) {
+    if(interval > 60){ Selectors.timerDisplay.innerHTML = `Count is too high`};
+
+    if(interval > 0 && interval <= 60) {
       --interval;
       //render count to view
+      console.log(interval)
         Selectors.timerDisplay.innerHTML = `${interval} Seconds`;
         Selectors.timerDisplay.style.color ="dodgerblue";
 
@@ -43,12 +45,12 @@ let int;
         Selectors.timerDisplay.style.color = 'red';
       }
 
-    else if(Selectors.input.value === ''){
+     if(Selectors.input.value === ''){
       Selectors.timerDisplay.innerHTML = 'no input given!'.toUpperCase();
       clearInterval(int);
     }
     
-    else{
+    if(interval === 0){
       let timerEndStr = `times up!`;
       clearInterval(int);
       Selectors.timerDisplay.innerHTML = timerEndStr.toUpperCase();
@@ -66,16 +68,12 @@ let str = `timer stopped!`;
 
 clearInterval(stop);
 
-for(let timeInput of Selectors.input) {
-  if(timeInput.value){
-    
-    Selectors.timerDisplay.innerHTML = str.toUpperCase(); 
-    Selectors.progressBar.style.width= '100%';
-    Selectors.progressBar.style.background='red';
-    clearInput();
-  }
+if(Selectors.input.value){
+  Selectors.timerDisplay.innerHTML = str.toUpperCase(); 
+  Selectors.progressBar.style.width= '100%';
+  Selectors.progressBar.style.background='red';
+  clearInput();
 }
-
 clearInput();
 }
 
@@ -83,29 +81,55 @@ function clearInput(){
   Selectors.input.value = '';
 }
 
-for(let buttonStart of Selectors.btnStart){
-  buttonStart.addEventListener('click', () => {
-    console.log(buttonStart)
-    //convert input from string to num
+function reset(){
+  clearInput();
+  timerStop();
+  Selectors.timerDisplay.innerHTML = `0`;
+  Selectors.timerDisplay.style.color= `dodgerblue`;
+  Selectors.progressBar.style.width =  `100%`;
+  Selectors.progressBar.style.background = `dodgerblue`;
+
+}
+
+
+/////////////////////////event handlers////////////////////////////////
+Selectors.btnStart.addEventListener('click', (event) => {
+  //convert input from string to num
+  let start = event.target.closest('.btn__timer--start');
+  
+  if(start){
     timerStart(parseInt(Selectors.input.value));
-  });
-}
+  }
+});
 
-for(let buttonStop of Selectors.btnStop){
-  buttonStop.addEventListener('click',() => {
-    console.log(buttonStop)
-    timerStop(int);
-    clearInput(); 
-  });
-}
+Selectors.input.addEventListener('click', (event) => {
+  
+  let input = event.target.closest('.timerinput');
+    if(input) {
+      timerStop(int);
+      clearInput();
+    }
+});
 
-for(let timeInput of Selectors.input){
-  timeInput.addEventListener('click', () => {
-    timerStop(int);
-  });
-}
+Selectors.btnStop.addEventListener('click',(event) => {
 
+    let stop = event.target.closest('.btn__timer--stop');
+    
+    if(stop){
+      timerStop(int);
+      clearInput(); 
+    }
+});
 
+Selectors.btnClear.addEventListener('click', event => {
+
+  let clear = event.target.closest('.btn__timer--clear');
+
+    if(clear){
+      reset();
+      
+    }
+});
 
 Selectors.addTimerBtn.addEventListener('click', () => {
 
