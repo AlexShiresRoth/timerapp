@@ -1,0 +1,183 @@
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2rem;
+  height: 2rem;
+  margin: 2rem 0;
+  background: #fff;
+  -webkit-box-shadow: 0 0 3px #eee;
+          box-shadow: 0 0 3px #eee;
+  width: 100vw;
+}
+
+.addtimer__btn {
+  padding: 1rem;
+  color: #fff;
+  background: green;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  border: 2px solid green;
+}
+
+.addtimer:hover {
+  cursor: pointer;
+  background: #004d00;
+  border: 2px solid #004d00;
+  -webkit-box-shadow: 0 4px 4px #666;
+          box-shadow: 0 4px 4px #666;
+}
+
+.time__select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.time__select input {
+  padding: .4rem;
+  border-radius: 5px;
+  border: 2px solid dodgerblue;
+  -webkit-box-shadow: 0 2px 2px #eee;
+          box-shadow: 0 2px 2px #eee;
+  margin: 0 5px;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.time__select input:hover {
+  -webkit-box-shadow: 0 5px 5px #999;
+          box-shadow: 0 5px 5px #999;
+}
+
+.time__select input:focus {
+  outline: none;
+}
+
+.time__select .btn__timer--stop {
+  border-radius: 5px;
+  background: red;
+  border: 2px solid red;
+  color: #fff;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  margin: 0 5px;
+  padding: .5rem;
+}
+
+.time__select .btn__timer--stop:hover {
+  background: #cc0000;
+  border: 2px solid #cc0000;
+  cursor: pointer;
+  -webkit-box-shadow: 0 5px 5px #999;
+          box-shadow: 0 5px 5px #999;
+}
+
+.time__select .btn__timer--start {
+  border-radius: 5px;
+  background: dodgerblue;
+  border: 2px solid dodgerblue;
+  color: #fff;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  margin: 0 5px;
+  padding: .5rem;
+}
+
+.time__select .btn__timer--start:hover {
+  background: #0077ea;
+  border: 2px solid #0077ea;
+  cursor: pointer;
+  -webkit-box-shadow: 0 5px 5px #999;
+          box-shadow: 0 5px 5px #999;
+}
+
+.progress__bar {
+  width: 100%;
+  height: 1.5rem;
+  border-radius: 2px;
+  background: #eee;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.progress__bar--fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+  width: 100%;
+  height: 100%;
+  background: dodgerblue;
+  -webkit-transition: all 1.2s ease;
+  transition: all 1.2s ease;
+}
+
+.counter__display {
+  height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 0 4px 4px #eee;
+          box-shadow: 0 4px 4px #eee;
+  border-radius: 5px;
+}
+
+.counter__display--container {
+  background: #fff;
+  padding: 2rem;
+  width: 60%;
+}
+
+h5 {
+  color: #666;
+  text-transform: uppercase;
+  z-index: 1;
+  margin: 1rem;
+}
+
+html, body {
+  font-family: 'Raleway';
+  font-size: 1.5rem;
+  background: #f3f3f3;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+/*# sourceMappingURL=main.css.map */

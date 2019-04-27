@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+  </head>
+  <body>
+    
+    <section class="header">
+      <nav class="nav">
+        
+        <p>Your Personal Timer</p>
+
+        <div class="addtimer">
+          <button class="addtimer__btn">Add New Timer</button>
+        </div>
+      </nav>
+    </section>
+
+    <section class="counter__display">
+      <div class="counter__display--container">
+          <div class="time__select">
+              <input class="timerInput" type="number" placeholder="60min">
+              <button class="btn__timer--start">Start</button>
+              <button class="btn__timer--stop">Stop</button>
+            </div>
+        <h5>Timer: <span class="counter__display--time">0</span></h5>
+        <div class="progress__bar">
+          <div class="progress__bar--fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <script src="/javascripts/bundle.js"></script>
+  </body>
+</html>
