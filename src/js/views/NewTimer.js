@@ -1,7 +1,9 @@
 import Selectors from "../models/ElementSelectors";
 
 const NewTimer = () => {
-     console.log("did this work")
+  
+    let newArr = [];
+
     let markup = `
         <div class="counter__display--container">
         <div class="time__select">
@@ -18,6 +20,10 @@ const NewTimer = () => {
   `;
 
   Selectors.newTimerDisplay.insertAdjacentHTML('beforeend', markup);
+
+  newArr.push(markup);
+
+  console.log(newArr);
 }
 
 export default NewTimer;

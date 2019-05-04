@@ -1,9 +1,20 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const Timer = require('../models/timer');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', (req, res, next) => {
+  Timer.find()
+  .then(timers => {
+      res.render('index', { title: timers[0].name });
+  })
+  .catch(err => {
+    console.log(err)
+    res.render('index')
+  })
+  
 });
+
+
 
 module.exports = router;

@@ -3,6 +3,9 @@
 //allow user to enter time to count down from{done}
 //convert user input into different time
 //play audio clip when time runs out
+//figure out how to get input of each dynamically loaded element
+//add a database to use 
+//have user authentication
 
 import Selectors from './models/ElementSelectors';
 
@@ -10,8 +13,10 @@ import NewTimer from './views/NewTimer';
 
 let int;
 
- function timerStart(interval){
+ function timerStart(newInterval){
    
+  let interval = parseInt(newInterval.value);
+  
   int = setInterval(function(){
     
     if(interval > 60){ Selectors.timerDisplay.innerHTML = `Count is too high`};
@@ -69,9 +74,11 @@ let str = `timer stopped!`;
 clearInterval(stop);
 
 if(Selectors.input.value){
+  
   Selectors.timerDisplay.innerHTML = str.toUpperCase(); 
   Selectors.progressBar.style.width= '100%';
   Selectors.progressBar.style.background='red';
+  
   clearInput();
 }
 clearInput();
@@ -82,6 +89,7 @@ function clearInput(){
 }
 
 function reset(){
+  
   clearInput();
   timerStop();
   Selectors.timerDisplay.innerHTML = `0`;
@@ -93,45 +101,51 @@ function reset(){
 
 
 /////////////////////////event handlers////////////////////////////////
-Selectors.btnStart.addEventListener('click', (event) => {
-  //convert input from string to num
-  let start = event.target.closest('.btn__timer--start');
+
+//start timer event
+document.addEventListener('click', (event) => {
   
-  if(start){
-    timerStart(parseInt(Selectors.input.value));
+  if(event.target && event.target.className == 'btn__timer--start'){
+    
+    console.log(event.target)
+    
+    timerStart(Selectors.input);
   }
 });
 
-Selectors.input.addEventListener('click', (event) => {
+//if input is pressed while timer is running, stop timer
+document.addEventListener('click', (event) => {
   
-  let input = event.target.closest('.timerinput');
-    if(input) {
+    if(event.target && event.target.className == 'timerinput') {
+      console.log(event.target)
       timerStop(int);
       clearInput();
     }
 });
 
-Selectors.btnStop.addEventListener('click',(event) => {
-
-    let stop = event.target.closest('.btn__timer--stop');
+//stop timer event
+document.addEventListener('click',(event) => {
     
-    if(stop){
+    if(event.target && event.target.className == 'btn__timer--stop'){
+      console.log(event.target)
       timerStop(int);
       clearInput(); 
     }
 });
 
-Selectors.btnClear.addEventListener('click', event => {
+//reset timer and input event
+document.addEventListener('click', event => {
 
-  let clear = event.target.closest('.btn__timer--clear');
-
-    if(clear){
+    if(event.target && event.target.className == 'btn__timer--clear'){
+      console.log(event.target)
       reset();
       
     }
 });
 
+//add a new timer
 Selectors.addTimerBtn.addEventListener('click', () => {
 
     NewTimer();
+    
 });
