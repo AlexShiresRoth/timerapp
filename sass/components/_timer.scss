@@ -108,3 +108,24 @@
       }
     }
 }
+
+
+.audio__player {
+  margin: 2rem 0 ;
+
+  & .btn__audio--stop{
+    border-radius: 5px;
+    background:red;
+    border: 2px solid red;
+    color: #fff;
+    transition: all .2s ease-in-out;
+    margin:0 5px;
+    padding:.5rem;
+    &:hover{
+      background : darken(red,10%);
+      border: 2px solid darken(red,10%);
+      cursor:pointer;
+      box-shadow:0 5px 5px #999;
+    }
+  }
+}

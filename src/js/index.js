@@ -11,7 +11,52 @@ import Selectors from './models/ElementSelectors';
 
 import NewTimer from './views/NewTimer';
 
+
 let int;
+let audio = new Audio('/audio/chill.wav');
+
+
+function changeTimerDisplay(interval) {
+  Selectors.timerDisplay.innerHTML = `${interval} Seconds`;
+  Selectors.timerDisplay.style.color ="dodgerblue";
+
+  Selectors.progressBar.style.width = `${interval}%`;
+  Selectors.progressBar.style.background = 'dodgerblue';
+}
+
+function timerBelowFifteen(interval){
+  Selectors.progressBar.style.background = 'yellow';
+  Selectors.timerDisplay.style.color='yellow';
+}
+
+function changeSecondDisplay(interval){
+  Selectors.timerDisplay.innerHTML = `${interval} Second`;
+}
+
+function timerBelowTen(interval){
+  Selectors.progressBar.style.background = 'orange';
+  Selectors.timerDisplay.style.color='orange';
+}
+function tiimerBelowFive(interval){
+  Selectors.progressBar.style.background = 'red';
+  Selectors.timerDisplay.style.color = 'red';
+}
+function emptyInput(interval){
+  Selectors.timerDisplay.innerHTML = 'no input given!'.toUpperCase();
+  clearInterval(int);
+}
+function timesUp(int){
+    let timerEndStr = `times up!`;
+    clearInterval(int);
+    Selectors.timerDisplay.innerHTML = timerEndStr.toUpperCase();
+    Selectors.progressBar.style.width= '100%';
+    Selectors.progressBar.style.background = 'red';
+    clearInput();
+    Selectors.btnAudio.innerHTML = `Stop Playing: Audio File`;
+    audio.play()
+}
+
+
 
  function timerStart(newInterval){
    
@@ -21,48 +66,29 @@ let int;
     
     if(interval > 60){ Selectors.timerDisplay.innerHTML = `Count is too high`};
 
-    if(interval > 0 && interval <= 60) {
+      if(interval > 0 && interval <= 60) {
       --interval;
       //render count to view
-      console.log(interval)
-        Selectors.timerDisplay.innerHTML = `${interval} Seconds`;
-        Selectors.timerDisplay.style.color ="dodgerblue";
-
-        Selectors.progressBar.style.width = `${interval}%`;
-        Selectors.progressBar.style.background = 'dodgerblue';
-    }
-
-      if(interval < 2){
-        Selectors.timerDisplay.innerHTML = `${interval} Second`;
+        changeTimerDisplay(interval);
       }
-      
-      
+      if(interval < 2){
+        changeSecondDisplay(interval);
+      }
       if(interval < 15){
-        Selectors.progressBar.style.background = 'yellow';
-        Selectors.timerDisplay.style.color='yellow';
+        timerBelowFifteen(interval);
       }
       if(interval < 10){
-        Selectors.progressBar.style.background = 'orange';
-        Selectors.timerDisplay.style.color='orange';
+        timerBelowTen(interval);
       }
       if(interval < 5){
-        Selectors.progressBar.style.background = 'red';
-        Selectors.timerDisplay.style.color = 'red';
+        tiimerBelowFive(interval);
       }
-
-     if(Selectors.input.value === ''){
-      Selectors.timerDisplay.innerHTML = 'no input given!'.toUpperCase();
-      clearInterval(int);
-    }
-    
-    if(interval === 0){
-      let timerEndStr = `times up!`;
-      clearInterval(int);
-      Selectors.timerDisplay.innerHTML = timerEndStr.toUpperCase();
-      Selectors.progressBar.style.width= '100%';
-      Selectors.progressBar.style.background = 'red';
-      clearInput();
-    }
+      if(Selectors.input.value === ''){
+        emptyInput(interval)
+      }
+      if(interval === 0){
+        timesUp(int);
+      }
   }, 1000);
 }
 
@@ -81,7 +107,8 @@ if(Selectors.input.value){
   
   clearInput();
 }
-clearInput();
+  clearInput();
+
 }
 
 function clearInput(){
@@ -97,6 +124,10 @@ function reset(){
   Selectors.progressBar.style.width =  `100%`;
   Selectors.progressBar.style.background = `dodgerblue`;
 
+}
+
+function stopAudio() {
+  audio.stop();
 }
 
 
@@ -120,6 +151,7 @@ document.addEventListener('click', (event) => {
       console.log(event.target)
       timerStop(int);
       clearInput();
+      stopAudio();
     }
 });
 
@@ -130,6 +162,7 @@ document.addEventListener('click',(event) => {
       console.log(event.target)
       timerStop(int);
       clearInput(); 
+      stopAudio();
     }
 });
 
@@ -139,7 +172,13 @@ document.addEventListener('click', event => {
     if(event.target && event.target.className == 'btn__timer--clear'){
       console.log(event.target)
       reset();
-      
+      stopAudio();
+    }
+});
+
+document.addEventListener('click', event => {
+  if(event.target && event.target.className== 'btn__audio--stop'){
+      stopAudio();
     }
 });
 

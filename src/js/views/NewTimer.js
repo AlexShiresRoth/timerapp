@@ -16,6 +16,9 @@ const NewTimer = () => {
                 <div class="progress__bar">
                 <div class="progress__bar--fill"></div>
             </div>
+            <div class="audio__player">
+              <button class="btn__audio--stop">Stop Playing</button>
+            </div>
         </div>
   `;
 
