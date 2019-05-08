@@ -37,10 +37,16 @@
     height:20rem;
     margin:1rem;
     box-shadow: 0 4px 4px #eee;
+
+    &--time{
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+    }
   }
 }
 
-.time__select{
+.timer__display{
   display:flex;
   flex-direction:row;
   

@@ -56,22 +56,26 @@ nav {
     height: 20rem;
     margin: 1rem;
     box-shadow: 0 4px 4px #eee; }
+    .counter__display--container--time {
+      display: flex;
+      flex-direction: row;
+      align-items: center; }
 
-.time__select {
+.timer__display {
   display: flex;
   flex-direction: row; }
-  .time__select input {
+  .timer__display input {
     padding: .4rem;
     border-radius: 5px;
     border: 2px solid dodgerblue;
     box-shadow: 0 2px 2px #eee;
     margin: 0 5px;
     transition: all .2s ease-in-out; }
-    .time__select input:hover {
+    .timer__display input:hover {
       box-shadow: 0 5px 5px #999; }
-    .time__select input:focus {
+    .timer__display input:focus {
       outline: none; }
-  .time__select .btn__timer--stop {
+  .timer__display .btn__timer--stop {
     border-radius: 5px;
     background: red;
     border: 2px solid red;
@@ -79,12 +83,12 @@ nav {
     transition: all .2s ease-in-out;
     margin: 0 5px;
     padding: .5rem; }
-    .time__select .btn__timer--stop:hover {
+    .timer__display .btn__timer--stop:hover {
       background: #cc0000;
       border: 2px solid #cc0000;
       cursor: pointer;
       box-shadow: 0 5px 5px #999; }
-  .time__select .btn__timer--start {
+  .timer__display .btn__timer--start {
     border-radius: 5px;
     background: dodgerblue;
     border: 2px solid dodgerblue;
@@ -92,12 +96,12 @@ nav {
     transition: all .2s ease-in-out;
     margin: 0 5px;
     padding: .5rem; }
-    .time__select .btn__timer--start:hover {
+    .timer__display .btn__timer--start:hover {
       background: #0077ea;
       border: 2px solid #0077ea;
       cursor: pointer;
       box-shadow: 0 5px 5px #999; }
-  .time__select .btn__timer--clear {
+  .timer__display .btn__timer--clear {
     border-radius: 5px;
     background: #ff4500;
     border: 2px solid #ff4500;
@@ -105,7 +109,7 @@ nav {
     transition: all .2s ease-in-out;
     margin: 0 5px;
     padding: .5rem; }
-    .time__select .btn__timer--clear:hover {
+    .timer__display .btn__timer--clear:hover {
       background: #cc3700;
       border: 2px solid #cc3700;
       cursor: pointer;

@@ -7,7 +7,7 @@ const NewTimer = () => {
     let markup = `
         <div class="counter__display--container">
         <div class="time__select">
-          <input class="timerinput" type="number" placeholder="60min">
+          <input class="timerinput" type="text" placeholder="60min">
             <button class="btn__timer--start">Start</button>
             <button class="btn__timer--stop">Stop</button>
             <button class="btn__timer--clear">Reset</button>
@@ -26,7 +26,6 @@ const NewTimer = () => {
 
   newArr.push(markup);
 
-  console.log(newArr);
 }
 
 export default NewTimer;

@@ -13,21 +13,24 @@
         
         <p><%= title %></p>
 
-        <div class="addtimer">
-          <button class="addtimer__btn">Add New Timer</button>
+        <div class="timer__display">
+          <input class="timer__input--three">hrs</input>
+          <input class="timer__input--two">min</input>
+          <input class="timer__input--one">s</input>
+          <button class="btn__timer--start">Start</button>
+          <button class="btn__timer--stop">Stop</button>
+          <button class="btn__timer--clear">Reset</button>
         </div>
       </nav>
     </section>
 
     <section class="counter__display">
       <div class="counter__display--container">
-          <div class="time__select">
-              <input class="timerinput" type="number" placeholder="60min">
-              <button class="btn__timer--start">Start</button>
-              <button class="btn__timer--stop">Stop</button>
-              <button class="btn__timer--clear">Reset</button>
+          <div class="counter__display--container--time">
+              <h5 class="counter__display--container--time--hrs">00hrs:</h5>
+              <h5 class="counter__display--container--time--min">00min:</h5>
+              <h5 class="counter__display--container--time--sec">00s</h5>
           </div>
-        <h5>Timer: <span class="counter__display--time">0</span></h5>
         <div class="progress__bar">
           <div class="progress__bar--fill"></div>
         </div>
