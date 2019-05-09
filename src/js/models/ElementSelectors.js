@@ -9,8 +9,9 @@ const Selectors = {
   timerDisplay: document.querySelector('.counter__display--time'),
   progressBar: document.querySelector('.progress__bar--fill'),
   timerDisplaySeconds: document.querySelector('.counter__display--container--time--sec'),
+  timerDisplayMinutes: document.querySelector('.counter__display--container--time--min'),
+  timerDisplayHours: document.querySelector('.counter__display--container--time--hrs'),
   displayContainer: document.querySelector('.counter__display--container'),
-  addTimerBtn: document.querySelector('.addtimer__btn'),
   btnAudio: document.querySelector('.btn__audio--stop')
 }
 
