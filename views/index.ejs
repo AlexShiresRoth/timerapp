@@ -14,9 +14,9 @@
         <p><%= title %></p>
 
         <div class="timer__display">
-          <input class="timer__input--three">hrs</input>
-          <input class="timer__input--two">min</input>
-          <input class="timer__input--one">s</input>
+          <input class="timer__input--three" type="number" value="00" max="99">hrs</input>
+          <input class="timer__input--two" type="number" value="00" max="60">min</input>
+          <input class="timer__input--one" type="number" value="00" max="60" min="1">s</input>
           <button class="btn__timer--start">Start</button>
           <button class="btn__timer--stop">Stop</button>
           <button class="btn__timer--clear">Reset</button>
@@ -26,7 +26,7 @@
 
     <section class="counter__display">
       <div class="counter__display--container">
-          <h2>Count Down:</h2>
+          <h2 class="counter__display--container--display">Count Down:</h2>
           <div class="counter__display--container--time">
               <h5 class="counter__display--container--time--hrs">00hrs:</h5>
               <h5 class="counter__display--container--time--min">00min:</h5>

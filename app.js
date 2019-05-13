@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const passport = require('passport');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
@@ -19,6 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -29,6 +32,9 @@ mongoose.set('debug', true);
 mongoose.connect('mongodb://localhost/timer-api', {useNewUrlParser: true});
 
 mongoose.Promise = Promise;
+
+//passport config
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

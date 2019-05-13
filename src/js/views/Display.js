@@ -1,33 +1,29 @@
 import Selectors from "../models/ElementSelectors";
 
+import int from '../index';
+import audio from'../index';
 
 //TODO add these into main function
-export function changeTimerDisplay(interval) {
-  Selectors.timerDisplay.innerHTML = `${interval} Seconds`;
-  Selectors.timerDisplay.style.color ="dodgerblue";
-
-  Selectors.progressBar.style.width = `${interval}%`;
-  Selectors.progressBar.style.background = 'dodgerblue';
+//fix to reset all input values
+export function clearInput(){
+  Selectors.inputOne.value = '00';
+  Selectors.inputTwo.value = '00';
+  Selectors.inputThree.value = '00';
 }
 
-export function timerBelowFifteen(interval){
-  Selectors.progressBar.style.background = 'yellow';
-  Selectors.timerDisplay.style.color='yellow';
+export function resetValues() {
+  Selectors.inputOne.value = '00';
+  Selectors.inputTwo.value = '00';
+  Selectors.inputThree.value = '00';
+
+  Selectors.timerDisplaySeconds.innerHTML = `00s`;
+  Selectors.timerDisplayMinutes.innerHTML = `00min`;
+  Selectors.timerDisplayHours.innerHTML = `00hrs`;
+
+  Selectors.timerDisplay.innerHTML = `Count Down:`
 }
 
-export function changeSecondDisplay(interval){
-  Selectors.timerDisplay.innerHTML = `${interval} Second`;
-}
-
-export function timerBelowTen(interval){
-  Selectors.progressBar.style.background = 'orange';
-  Selectors.timerDisplay.style.color='orange';
-}
-export function tiimerBelowFive(interval){
-  Selectors.progressBar.style.background = 'red';
-  Selectors.timerDisplay.style.color = 'red';
-}
-export function emptyInput(interval){
+export function emptyInput(){
   Selectors.timerDisplay.innerHTML = 'no input given!'.toUpperCase();
   clearInterval(int);
 }
@@ -35,9 +31,31 @@ export function timesUp(int){
     let timerEndStr = `times up!`;
     clearInterval(int);
     Selectors.timerDisplay.innerHTML = timerEndStr.toUpperCase();
-    Selectors.progressBar.style.width= '100%';
-    Selectors.progressBar.style.background = 'red';
-    clearInput();
-    Selectors.btnAudio.innerHTML = `Stop Playing: Audio File`;
+    resetValues();
     audio.play()
+}
+
+//fix this code to incorporate all inputs
+export function timerStop(stop){
+
+  let str = `timer stopped!`;
+  
+    if(Selectors.inputOne.value){
+        
+        Selectors.timerDisplay.innerHTML = str.toUpperCase(); 
+        
+        clearInterval(stop)
+      }
+  
+  }
+
+  
+export function reset(){
+  
+  resetValues();
+  clearInterval(int);
+}
+
+export function stopAudio() {
+  audio.pause();
 }
