@@ -3,10 +3,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const loginRouter = require('./routes/users');
 const indexRouter = require('./routes/index');
 const timersRouter = require('./routes/timers');
 
@@ -24,7 +26,8 @@ app.use(cookieParser());
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', loginRouter);
+app.use('/home', indexRouter);
 app.use('/api/timers', timersRouter);
 
 //mongoose setup

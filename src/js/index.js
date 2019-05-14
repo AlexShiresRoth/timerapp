@@ -28,135 +28,38 @@ let audio = new Audio('/audio/chill.wav');
  function timerStart(seconds, minutes,hours){
 
   clearInput();
+  
+  
+  let h = hours;
+  let m = minutes;
+  let s = seconds;
+
+  int = setInterval(function() {
+    let current = ((h * 3600) + (m * 60) + s);  //the current time left in seconds
     
-    /////////seconds input count
-    if(seconds > 0 && minutes == 0 && hours == 0){
-        int = setInterval(function(){
-          Selectors.timerDisplay.innerHTML = `Count Down:`;
-        --seconds;
-            if(seconds === 1 && minutes > 0){
-                --minutes
-                seconds += 59;
-            }
-            if(minutes === 0 && hours > 0){
-              --hours
-              minutes += 60;
-            }
-            if(seconds === 0 && hours === 0 && minutes === 0) {
-              timesUp(int);
-              seconds = 0;
-              hours = 0;
-              minutes = 0;
-            }
-
-          Selectors.timerDisplaySeconds.innerHTML = `${seconds}s`;
-          Selectors.timerDisplayMinutes.innerHTML = `${minutes}m:`;
-          Selectors.timerDisplayHours.innerHTML = `${hours}h:`;
-        },1000);
-      }
-    
-
-      ///////minutes input count
-    if(seconds == 0 && minutes > 0 && hours == 0) {
-          
-        seconds = 60;
-        hours = 0;
-          
-        int = setInterval(function(){ 
-          Selectors.timerDisplay.innerHTML = `Count Down:`;
-          
-          --seconds;
-
-          if(minutes === 1 && seconds === 59 && hours === 0) {
-            minutes = 0;
-          }
-          if(seconds === 0 && minutes > 0){
-              --minutes
-              seconds += 59;
-          }
-          if(minutes === 0 && hours > 0){
-            --hours
-            minutes += 59;
-          }
-          if(seconds === 1 && hours === 0 && minutes === 0) {
-            timesUp(int);
-            seconds = 0;
-            hours = 0;
-            minutes = 0;
-          }
-        
-          Selectors.timerDisplaySeconds.innerHTML = `${seconds}s`;
-          Selectors.timerDisplayMinutes.innerHTML = `${minutes}m:`;
-          Selectors.timerDisplayHours.innerHTML = `${hours}h:`;
-      
-        },1000);
+    if (current > 0) {
+        //take one second away, and rerender the seconds split into d, h, m, and s in the html, which you will reuse next time timer() runs
+        --s;
     }
-
-    ////hours input count
-    ///figure out logic for hour input, acting funky
-
-    if(seconds === 0 && minutes == 0 && hours > 0){
-      
-      seconds = 60;
-      minutes = 59;
-
-        int = setInterval(function(){
-          Selectors.timerDisplay.innerHTML = `Count Down:`;
-
-          --seconds;
-
-          if(hours > 0 && minutes === 59 && seconds === 59) {
-            hours = 0;
-          }
-          if(seconds === 0 && minutes === 0){
-              --minutes
-              seconds += 59;
-          }
-          if(minutes === 0 && hours > 0){
-            --hours
-            minutes += 60;
-          }
-          if(seconds === 0 && hours === 0 && minutes === 0) {
-            timesUp(int);
-            seconds = 0;
-            hours = 0;
-            minutes = 0;
-          }
-
-          Selectors.timerDisplaySeconds.innerHTML = `${seconds}s`;
-          Selectors.timerDisplayMinutes.innerHTML = `${minutes}m:`;
-          Selectors.timerDisplayHours.innerHTML = `${hours}h:`;
-        },1000)
+    if(s === 0) {
+        m -= 1;
+        s += 60;
     }
-
-    if(seconds > 0 && minutes > 0 && hours >0) {
-      int = setInterval(function(){    
-        Selectors.timerDisplay.innerHTML = `Count Down:`;
-      --seconds;
-
-          if(seconds === 1 && minutes > 0){
-              --minutes
-              seconds += 59;
-          }
-          if(minutes === 0 && hours > 0){
-            --hours
-            minutes += 60;
-          }
-          if(seconds === 1 && hours === 0 && minutes === 0) {
-            seconds = 0;
-            hours = 0;
-            minutes = 0;
-            timesUp(int);
-          }
-
-        Selectors.timerDisplaySeconds.innerHTML = `${seconds}s`;
-        Selectors.timerDisplayMinutes.innerHTML = `${minutes}m:`;
-        Selectors.timerDisplayHours.innerHTML = `${hours}h:`;
-      },1000)
+    if(m === 0) {
+      h -= 1;
+      m += 59
     }
-    else if(seconds == 0 && minutes == 0 && hours == 0){
+    if(h === 0){
+      h = 0;
+    }
+    else if(h === 0 && m === 0 && hours === 0){
       emptyInput();
     }
+    Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
+    Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
+    Selectors.timerDisplayHours.innerHTML = `${h}h:`;
+    },1000)
+   
   }
 
 

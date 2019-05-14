@@ -131,6 +131,23 @@ nav {
       cursor: pointer;
       box-shadow: 0 5px 5px #999; }
 
+.login__container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #eee; }
+  .login__container--form {
+    background: #fff;
+    box-shadow: 0 5px 5px #d5d5d5;
+    border-radius: 5px;
+    min-height: 20rem;
+    min-width: 20rem;
+    display: flex;
+    flex-direction: column; }
+
 h5 {
   color: #666;
   text-transform: uppercase;
