@@ -1,34 +1,28 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const passport = require('passport');
-const bodyParser = require('body-parser');
+const LocalStrategy = require('passport-local');
 const mongoose = require('mongoose');
 
-const loginRouter = require('./routes/users');
+//models
+const User = require('./models/user')
+
 const indexRouter = require('./routes/index');
 const timersRouter = require('./routes/timers');
 
 const app = express();
 
+app.use(cors());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(bodyParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', loginRouter);
-app.use('/home', indexRouter);
-app.use('/api/timers', timersRouter);
 
 //mongoose setup
 mongoose.set('debug', true);
@@ -36,8 +30,39 @@ mongoose.connect('mongodb://localhost/timer-api', {useNewUrlParser: true});
 
 mongoose.Promise = Promise;
 
-//passport config
 
+//express session setup
+app.use(require('express-session')({
+  secret:'Snacky',
+  resave:false,
+  saveUninitialized: false
+}));
+
+//passport config
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use((req,res,next) => {
+  res.locals.currentUser = req.user;
+  next();
+})
+
+app.use('/', indexRouter);
+app.use('/api/timers', timersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

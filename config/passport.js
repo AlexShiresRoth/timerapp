@@ -1,18 +1,23 @@
-const mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
 
 const User = require('../models/user');
 
-passport.use(new LocalStrategy({
-    usernameField: 'userName[userName]',
-},(userName) => {
-    User.findOne({ userName })
-        .then(user => {
-            if(!user){
-                return done(null,false, {errors : { 'username' : 'is invalid '} });
-            }
+//signup logic 
+exports.signUp = (req,res,next) => {
+    req.body.username;
+    req.body.password;
 
-            return done(null,user);
-        }).catch(done);
-}));
+    console.log(req.body.username)
+    let newUser = new User({ username: req.body.username});
+    User.register(newUser, req.body.password, (err, user) => {
+        if(err){
+            console.log(err);
+            return res.redirect('/')
+        }
+        passport.authenticate('local')(req, res, () => {
+            res.redirect('/timer');
+        })
+    })
+}
+
+module.exports = exports;

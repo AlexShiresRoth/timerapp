@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+  </head>
+  <body>
+    
+    <section class="header">
+      <nav class="nav">
+        
+        <p> <%= currentUser.username %>'s Timer</p>
+
+        <div class="timer__display">
+          <input class="timer__input--three" type="number" value="00" max="99">hrs</input>
+          <input class="timer__input--two" type="number" value="00" max="60">min</input>
+          <input class="timer__input--one" type="number" value="00" max="60" min="1">s</input>
+          <button class="btn__timer--start">Start</button>
+          <button class="btn__timer--stop">Stop</button>
+          <button class="btn__timer--clear">Reset</button>
+        </div>
+      </nav>
+    </section>
+
+    <section class="counter__display">
+      <div class="counter__display--container">
+          <h2 class="counter__display--container--display">Count Down:</h2>
+          <div class="counter__display--container--time">
+              <h5 class="counter__display--container--time--hrs">00hrs:</h5>
+              <h5 class="counter__display--container--time--min">00min:</h5>
+              <h5 class="counter__display--container--time--sec">00s</h5>
+          </div>
+        <div class="progress__bar">
+          <div class="progress__bar--fill"></div>
+        </div>
+        <div class="audio__player">
+          <button class="btn__audio--stop">Stop Playing</button>
+        </div>
+      </div>
+    </section>
+
+    <script src="/javascripts/bundle.js"></script>
+  </body>
+</html>
