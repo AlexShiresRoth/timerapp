@@ -33,33 +33,47 @@ let audio = new Audio('/audio/chill.wav');
   let h = hours;
   let m = minutes;
   let s = seconds;
+  let current = ((h * 3600) + (m * 60) + s);
 
-  int = setInterval(function() {
-    let current = ((h * 3600) + (m * 60) + s);  //the current time left in seconds
-    
-    if (current > 0) {
-        //take one second away, and rerender the seconds split into d, h, m, and s in the html, which you will reuse next time timer() runs
-        --s;
+  if(current > 0){
+    int = setInterval(function() {
+        //the current time left in seconds
+            //take one second away, and rerender the seconds split into d, h, m, and s in the html, which you will reuse next time timer() runs
+            --s;
+          //if current is greater than zero, subtract seconds
+        if(s > 0 && m == 0 && h == 0){
+          --s;
+          m += 0;
+          h += 0;
+        }
+        if(m > 0 && h == 0 && s == 0){
+          --m;
+          h += 0;
+          s = 0
+          s += 60;
+        }
+        if(h > 0 && m == 0 && s == 0){
+          --h;
+          m += 60;
+          s += 60;
+        }
+        if(s === 0) {
+            m -= 1;
+            s += 60;
+        }
+        if(m === 0) {
+          h -= 1;
+          m += 59
+        }
+     
+        Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
+        Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
+        Selectors.timerDisplayHours.innerHTML = `${h}h:`;
+      },1000);
     }
-    if(s === 0) {
-        m -= 1;
-        s += 60;
-    }
-    if(m === 0) {
-      h -= 1;
-      m += 59
-    }
-    if(h === 0){
-      h = 0;
-    }
-    else if(h === 0 && m === 0 && hours === 0){
+    else if(current < 1) {
       emptyInput();
     }
-    Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
-    Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
-    Selectors.timerDisplayHours.innerHTML = `${h}h:`;
-    },1000)
-   
   }
 
 
