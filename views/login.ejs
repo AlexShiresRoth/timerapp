@@ -1,13 +1,18 @@
 <% include partials/header %>
 
+
         <div class="login__container">
+                <% if(success && success.length > 0) { %>
+                    <div class="success-msg"><%= success %> </div>
+                <% } %> 
                 <% if(error && error.length > 0) { %>
                     <div class="failure-msg"><%= error %> </div>
                 <% } %> 
+
             <h2>Welcome to Your Personal TimerApp</h2>
             <div class="login__container--form">
-                <p>Please signup, or if you have an account please <a href="/login">login</a></p>
-                <form action="/signup" method="POST">
+                    <p>Please login, or if don't you have an account please <a href="/">signup</a></p>
+                <form action="/login" method="POST">
                     <label for="username">Username</label>
                     <input type="text" placeholder="Jane Dandy"  name="username" required>
                     <label for="password">Password</label>
@@ -16,5 +21,5 @@
                 </form>
             </div>
         </div>
-
+        
 <% include partials/footer %>

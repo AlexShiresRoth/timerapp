@@ -9,9 +9,20 @@
   <body>
     
     <section class="header">
+
+      <% if(success && success.length > 0) { %>
+          <div class="success-msg"><%= success %> </p></div>
+      <% } %> 
+      <% if(error && error.length > 0) { %>
+        <div class="success-msg"><%= error %> </p></div>
+      <% } %> 
       <nav class="nav">
         
-        <p> <%= currentUser.username %>'s Timer</p>
+        <div class="user__display">
+            <p><%= currentUser.username %>'s Timer</p>
+            <a href="/logout"> <button class="user_display--logout">Logout</button></a>
+        </div>
+        
 
         <div class="timer__display">
           <input class="timer__input--three" type="number" value="00" max="99">hrs</input>

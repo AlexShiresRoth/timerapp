@@ -146,13 +146,65 @@ nav {
     min-height: 20rem;
     min-width: 20rem;
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    padding: 2rem; }
+    .login__container--form p {
+      font-size: .8rem; }
+    .login__container--form form {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 60%; }
+      .login__container--form form label {
+        font-size: .8rem; }
+      .login__container--form form input {
+        margin: .5rem 0;
+        height: 1.5rem;
+        border-radius: 3px;
+        border: 1px solid dodgerblue;
+        padding: .5rem; }
+      .login__container--form form button {
+        min-height: 1rem;
+        border-radius: 2px;
+        background: dodgerblue;
+        border: dodgerblue;
+        color: #fff; }
 
 h5 {
   color: #666;
   text-transform: uppercase;
   z-index: 1;
   margin: 1rem; }
+
+.success-msg {
+  font-size: .8rem;
+  color: #fff;
+  background: #51a9ff;
+  border: 2px solid dodgerblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  width: 100vw; }
+
+.failure-msg {
+  font-size: .8rem;
+  color: #fff;
+  background: #ff3333;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  width: 100vw; }
 
 html, body {
   font-family: 'Raleway';

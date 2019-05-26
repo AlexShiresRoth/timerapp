@@ -17,5 +17,39 @@
         min-width:20rem;
         display:flex;
         flex-direction:column;
+        justify-content:center;
+        align-items: center;
+        margin:2rem;
+        padding:2rem;
+
+        & p {
+            font-size: .8rem;
+        }
+
+        & form{
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 60%;
+            & label {
+                font-size:.8rem;
+            }
+            & input {
+                margin: .5rem 0;
+                height: 1.5rem;
+                border-radius: 3px;
+                border: 1px solid dodgerblue;
+                padding: .5rem;
+            }
+            & button {
+                min-height: 1rem;
+                border-radius: 2px;
+                background: dodgerblue;
+                border: dodgerblue;
+                color: #fff;
+                padding:1rem;
+            }
+        }
     }
 }
