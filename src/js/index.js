@@ -35,41 +35,75 @@ let audio = new Audio('/audio/chill.wav');
   let s = seconds;
   let current = ((h * 3600) + (m * 60) + s);
 
-  if(current > 0){
-    int = setInterval(function() {
+
+  //timer for just seconds input
+  if(current > 0 && s > 0 && m == 0 && h == 0){
+    int = setInterval(() => {
         //the current time left in seconds
-            //take one second away, and rerender the seconds split into d, h, m, and s in the html, which you will reuse next time timer() runs
+            m=0;
+            h=0;
             --s;
-          //if current is greater than zero, subtract seconds
-        if(s > 0 && m == 0 && h == 0){
-          --s;
-          m += 0;
-          h += 0;
-        }
-        if(m > 0 && h == 0 && s == 0){
-          --m;
-          h += 0;
-          s = 0
-          s += 60;
-        }
-        if(h > 0 && m == 0 && s == 0){
-          --h;
-          m += 60;
-          s += 60;
-        }
-        if(s === 0) {
-            m -= 1;
-            s += 60;
-        }
-        if(m === 0) {
-          h -= 1;
-          m += 59
+           
+        if(s == 0 && m == 0 && h == 0){
+          clearInterval(int);
+          return timesUp();
         }
      
         Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
         Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
         Selectors.timerDisplayHours.innerHTML = `${h}h:`;
       },1000);
+    }
+    if(current > 0 && s == 0 && m == 0 && h > 0) {
+     
+      int = setInterval(() => {
+        
+        --s;
+
+        if(h > 0){
+          h -= 1;
+          s += 60;
+          m += 60;
+        } 
+        Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
+        Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
+        Selectors.timerDisplayHours.innerHTML = `${h}h:`;
+
+      },1000)
+    }
+
+    if(current > 0 && s == 0 && m > 0 && h == 0) {
+      int = setInterval(() => {
+        
+        --s;
+
+        if(m > 0){
+          --m 
+          h = 0;
+          s += 60;
+        } 
+        Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
+        Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
+        Selectors.timerDisplayHours.innerHTML = `${h}h:`;
+
+        },1000)
+      }
+
+      //timer for if all inputs have input
+      if(current > 0 && s > 0 && m > 0 && h > 0) {
+        int = setInterval(() => {
+          
+          --s;
+  
+          if(m > 0 && s == 0){
+            --m 
+            s += 60;
+          } 
+          Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
+          Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
+          Selectors.timerDisplayHours.innerHTML = `${h}h:`;
+  
+        },1000)
     }
     else if(current < 1) {
       emptyInput();
