@@ -16,7 +16,10 @@ import {
   timesUp, 
   timerStop, 
   reset, 
-  stopAudio  
+  stopAudio,
+  styleSeconds,
+  styleTimeOut,  
+  resetValues
 } from './views/Display';
 
 let int;
@@ -28,6 +31,8 @@ let audio = new Audio('/audio/chill.wav');
  function timerStart(seconds, minutes,hours){
 
   clearInput();
+  resetValues();
+  clearInterval(int);
   
   
   let h = hours;
@@ -41,29 +46,35 @@ let audio = new Audio('/audio/chill.wav');
     int = setInterval(() => {
       //subtract seconds
             --s;
-            if(s < 0) {
-              if(m > 0){
-                //subtract minute once seconds run out
-                s = 59;
-                m--;
-              }
-              if(m < 1) {
-                //subtract hour if minutes run out
-                if(h > 0) {
-                  m = 59;
+             //change color of seconds timer
+             if(s < 60 && h == 0 && m ==0) {styleSeconds();}
+             if(s < 5 && h == 0 && m ==0){styleTimeOut();}
+
+              if(s < 0) {
+                if(m > 0){
+                  //subtract minute once seconds run out
                   s = 59;
-                  h--;
+                  m--;
+                }
+                if(m < 1) {
+                  //subtract hour if minutes run out
+                  if(h > 0) {
+                    m = 59;
+                    s = 59;
+                    h--;
+                  }
                 }
               }
-            }
+
         if(s == 0 && m == 0 && h == 0){
           clearInterval(int);
-          return timesUp();
+          resetValues();
+          timesUp();
         }
      
-        Selectors.timerDisplaySeconds.innerHTML = `${s}s`;
-        Selectors.timerDisplayMinutes.innerHTML = `${m}m:`;
-        Selectors.timerDisplayHours.innerHTML = `${h}h:`;
+        Selectors.timerDisplaySeconds.innerHTML = `${s}`;
+        Selectors.timerDisplayMinutes.innerHTML = `${m}`;
+        Selectors.timerDisplayHours.innerHTML = `${h}`;
       },1000);
     }
 

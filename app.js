@@ -26,8 +26,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //mongoose setup
+const dbpassword = process.env.DBPASSWORD;
+const dbuser = process.env.DBUSER;
+
 mongoose.set('debug', true);
-mongoose.connect('mongodb://localhost/timer-api', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/timer-api' || `mongodb://${dbuser}:${dbpassword}@ds019936.mlab.com:19936/timerapp`, {useNewUrlParser: true});
 
 mongoose.Promise = Promise;
 

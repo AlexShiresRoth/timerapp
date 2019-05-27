@@ -10,6 +10,7 @@ const Selectors = {
   timerDisplaySeconds: document.querySelector('.counter__display--container--time--sec'),
   timerDisplayMinutes: document.querySelector('.counter__display--container--time--min'),
   timerDisplayHours: document.querySelector('.counter__display--container--time--hrs'),
+  timerBackground: document.querySelector('.counter__display--container--time'),
   displayContainer: document.querySelector('.counter__display--container'),
   btnAudio: document.querySelector('.btn__audio--stop')
 }

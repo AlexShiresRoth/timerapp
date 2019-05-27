@@ -11,7 +11,7 @@
 
     &--form {
         background: #fff;
-        box-shadow: 0 5px 5px darken(#eee, 10%);
+        box-shadow: 20px 19px 10px 10px darken(#eee, 10%);
         border-radius:5px;
         min-height: 20rem;
         min-width:20rem;
@@ -27,13 +27,19 @@
         }
 
         & form{
-            min-height: 100%;
+            min-height: 60%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 60%;
+            width: 70%;
+            background: dodgerblue;
+            margin: 2rem;
+            box-shadow: 20px 15px 7px 9px #eee;
+            padding: 1rem;
+            border-radius: 5px;
             & label {
                 font-size:.8rem;
+                color:#fff;
             }
             & input {
                 margin: .5rem 0;
@@ -43,12 +49,16 @@
                 padding: .5rem;
             }
             & button {
-                min-height: 1rem;
+                min-height: 1.5rem;
                 border-radius: 2px;
-                background: dodgerblue;
+                background: lighten(dodgerblue,20%);
                 border: dodgerblue;
                 color: #fff;
-                padding:1rem;
+                transition: all .3s ease-in-out;
+                &:hover{
+                    cursor:pointer;
+                    background: darken(dodgerblue, 10%);
+                }
             }
         }
     }

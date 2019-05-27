@@ -12,13 +12,23 @@ export function clearInput(){
 }
 
 export function resetValues() {
+  
   Selectors.inputOne.value = '00';
   Selectors.inputTwo.value = '00';
   Selectors.inputThree.value = '00';
 
-  Selectors.timerDisplaySeconds.innerHTML = `00s`;
-  Selectors.timerDisplayMinutes.innerHTML = `00min`;
-  Selectors.timerDisplayHours.innerHTML = `00hrs`;
+  Selectors.timerDisplaySeconds.innerHTML = `00`;
+  Selectors.timerDisplayMinutes.innerHTML = `00`;
+  Selectors.timerDisplayHours.innerHTML = `00`;
+
+  
+  Selectors.timerDisplaySeconds.style.color ='dodgerblue';
+  Selectors.timerDisplayMinutes.style.color ='dodgerblue';
+  Selectors.timerDisplayHours.style.color ='dodgerblue';
+
+  Selectors.timerBackground.style.borderColor ='dodgerblue';
+  Selectors.timerBackground.style.borderColor ='dodgerblue';
+  Selectors.timerBackground.style.borderColor ='dodgerblue';
 
   Selectors.timerDisplay.innerHTML = `Count Down:`
 }
@@ -27,11 +37,9 @@ export function emptyInput(){
   Selectors.timerDisplay.innerHTML = 'no input given!'.toUpperCase();
   clearInterval(int);
 }
-export function timesUp(int){
+export function timesUp(){
     let timerEndStr = `times up!`;
-    clearInterval(int);
     Selectors.timerDisplay.innerHTML = timerEndStr.toUpperCase();
-    resetValues();
     audio.play()
 }
 
@@ -48,6 +56,27 @@ export function timerStop(stop){
       }
   
   }
+
+export function styleSeconds() {
+  Selectors.timerDisplaySeconds.style.color = 'orange';
+  Selectors.timerDisplayMinutes.style.color =' orange';
+  Selectors.timerDisplayHours.style.color = 'orange';
+
+  Selectors.timerBackground.style.borderColor ='orange';
+  Selectors.timerBackground.style.borderColor ='orange';
+  Selectors.timerBackground.style.borderColor ='orange';
+} 
+
+export function styleTimeOut(){
+  Selectors.timerDisplaySeconds.style.color ='red';
+  Selectors.timerDisplayMinutes.style.color ='red';
+  Selectors.timerDisplayHours.style.color ='red';
+
+  Selectors.timerBackground.style.borderColor ='red';
+  Selectors.timerBackground.style.borderColor ='red';
+  Selectors.timerBackground.style.borderColor ='red';
+}
+
 
   
 export function reset(){
